@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="854" height="430" viewBox="0 0 854 430">
+  <rect width="854" height="430" fill="#0d1117"/>
+  <g font-family="'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif">
+    <text x="32" y="36" font-size="17" font-weight="600" fill="#e6edf3">Request path</text>
+    <g fill="#161b22" stroke="#30363d" stroke-width="1.2">
+      <rect x="32" y="56" width="120" height="52" rx="6"/>
+      <rect x="182" y="56" width="130" height="52" rx="6"/>
+      <rect x="342" y="56" width="130" height="52" rx="6"/>
+      <rect x="502" y="56" width="130" height="52" rx="6"/>
+      <rect x="662" y="56" width="160" height="52" rx="6"/>
+    </g>
+    <g fill="#e6edf3" font-size="12" text-anchor="middle">
+      <text x="92" y="86">question</text>
+      <text x="247" y="80">guardrails</text>
+      <text x="247" y="96" font-size="10" fill="#7d8590">PII + injection</text>
+      <text x="407" y="80">hybrid retrieval</text>
+      <text x="407" y="96" font-size="10" fill="#7d8590">BM25 + vector, RRF</text>
+      <text x="567" y="80">generation</text>
+      <text x="567" y="96" font-size="10" fill="#7d8590">cited answer</text>
+      <text x="742" y="80">cost + guard out</text>
+      <text x="742" y="96" font-size="10" fill="#7d8590">budget units, redaction</text>
+    </g>
+    <g stroke="#1f6feb" stroke-width="1.4" fill="none">
+      <path d="M152 82 H182"/><path d="M312 82 H342"/><path d="M472 82 H502"/><path d="M632 82 H662"/>
+    </g>
+    <g fill="#1f6feb">
+      <path d="M182 82 l-8 -3 v6 z"/><path d="M342 82 l-8 -3 v6 z"/><path d="M502 82 l-8 -3 v6 z"/><path d="M662 82 l-8 -3 v6 z"/>
+    </g>
+
+    <text x="32" y="156" font-size="17" font-weight="600" fill="#e6edf3">OCI footprint (Terraform modules)</text>
+    <g fill="#161b22" stroke="#30363d" stroke-width="1.2">
+      <rect x="32" y="176" width="240" height="88" rx="6"/>
+      <rect x="307" y="176" width="240" height="88" rx="6"/>
+      <rect x="582" y="176" width="240" height="88" rx="6"/>
+    </g>
+    <g fill="#e6edf3" font-size="12">
+      <text x="48" y="202" font-weight="600">genai</text>
+      <text x="48" y="222" fill="#7d8590" font-size="11">dedicated AI cluster</text>
+      <text x="48" y="238" fill="#7d8590" font-size="11">moderated chat endpoint</text>
+      <text x="323" y="202" font-weight="600">vector_db</text>
+      <text x="323" y="222" fill="#7d8590" font-size="11">Autonomous DB 23ai</text>
+      <text x="323" y="238" fill="#7d8590" font-size="11">AI Vector Search, mTLS only</text>
+      <text x="598" y="202" font-weight="600">observability</text>
+      <text x="598" y="222" fill="#7d8590" font-size="11">alarm topic + error alarm</text>
+      <text x="598" y="238" fill="#7d8590" font-size="11">log group, budget + forecast alert</text>
+    </g>
+
+    <text x="32" y="312" font-size="17" font-weight="600" fill="#e6edf3">Quality loop</text>
+    <g fill="#161b22" stroke="#30363d" stroke-width="1.2">
+      <rect x="32" y="330" width="240" height="64" rx="6"/>
+      <rect x="307" y="330" width="240" height="64" rx="6"/>
+      <rect x="582" y="330" width="240" height="64" rx="6"/>
+    </g>
+    <g fill="#e6edf3" font-size="12">
+      <text x="48" y="356" font-weight="600">golden-set eval</text>
+      <text x="48" y="376" fill="#7d8590" font-size="11">recall@k, citations, faithfulness</text>
+      <text x="323" y="356" font-weight="600">CI gate</text>
+      <text x="323" y="376" fill="#7d8590" font-size="11">53 tests + eval >= 0.8 on 3.10-3.12</text>
+      <text x="598" y="356" font-weight="600">mocked terraform test</text>
+      <text x="598" y="376" fill="#7d8590" font-size="11">plan assertions, tfsec clean</text>
+    </g>
+  </g>
+</svg>

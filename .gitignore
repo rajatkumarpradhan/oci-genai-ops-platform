@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+build_store.json
+.terraform/
+terraform.tfstate*
+.terraform.lock.hcl

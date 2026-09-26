@@ -1,0 +1,8 @@
+{
+  "pipeline": {"name": "genai-ops-demo", "chunk_size": 512, "chunk_overlap": 64, "max_answer_tokens": 512},
+  "retrieval": {"top_k": 4, "vector_weight": 0.6, "bm25_weight": 0.4, "min_score": 0.0},
+  "generation": {"client": "offline-extractive", "temperature": 0.0, "require_citations": true},
+  "guardrails": {"redact_pii": true, "block_injection": true, "max_input_chars": 8000},
+  "cost": {"monthly_budget_units": 100.0, "warn_fraction": 0.8, "input_token_price": 0.0015, "output_token_price": 0.002},
+  "observability": {"log_level": "INFO", "emit_traces": true, "metrics_namespace": "genai_ops"}
+}

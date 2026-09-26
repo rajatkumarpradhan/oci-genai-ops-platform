@@ -1,0 +1,10 @@
+# Declarative ingest pipeline: run nightly or on docs change.
+# Execution: PYTHONPATH=src python -m genai_ops.cli ingest fixtures/docs --store build/vector_store.json
+pipeline: ingest-docs
+schedule: "0 2 * * *"
+steps:
+  - name: chunk-embed-upsert
+    source: fixtures/docs
+    chunking: sentence
+    max_chars: 512
+    sink: build/vector_store.json

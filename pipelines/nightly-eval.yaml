@@ -1,0 +1,12 @@
+# Declarative eval pipeline: gate releases on answer quality.
+# Execution: PYTHONPATH=src python -m genai_ops.cli eval fixtures/docs fixtures/golden_eval.json --min-pass 0.8
+pipeline: nightly-eval
+schedule: "0 3 * * *"
+steps:
+  - name: golden-set-eval
+    docs: fixtures/docs
+    golden: fixtures/golden_eval.json
+    thresholds:
+      min_pass_rate: 0.8
+      faithfulness_floor: 0.35
+    on_failure: open-issue

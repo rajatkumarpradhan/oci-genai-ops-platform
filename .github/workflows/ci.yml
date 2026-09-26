@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  python:
+    name: unit tests + eval gate (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Unit tests
+        run: PYTHONPATH=src python -m unittest discover -s tests -v
+      - name: CLI smoke
+        run: |
+          PYTHONPATH=src python -m genai_ops.cli ingest fixtures/docs --store build_store.json
+          PYTHONPATH=src python -m genai_ops.cli query "What is OCI Generative AI?" --store build_store.json
+      - name: Golden-set eval gate
+        run: PYTHONPATH=src python -m genai_ops.cli eval fixtures/docs fixtures/golden_eval.json --min-pass 0.8
+
+  terraform:
+    name: fmt, validate, mocked tests, tfsec
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.8
+          terraform_wrapper: false
+      - name: Format check
+        run: terraform fmt -check -recursive terraform/
+      - name: Validate dev
+        working-directory: terraform/environments/dev
+        run: |
+          terraform init -backend=false -input=false
+          terraform validate
+      - name: Mocked tests - dev
+        working-directory: terraform/environments/dev
+        run: terraform test
+      - name: tfsec
+        uses: aquasecurity/tfsec-action@v1.0.3
+        with:
+          soft_fail: false

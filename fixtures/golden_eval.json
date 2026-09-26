@@ -1,0 +1,7 @@
+[
+  {"question": "What is OCI Generative AI?", "expected_doc": "oci-generative-ai"},
+  {"question": "Which models run on OCI Generative AI?", "expected_doc": "oci-generative-ai"},
+  {"question": "How do OCI budgets alert on spending?", "expected_doc": "oci-cost-governance"},
+  {"question": "What is the foundation of cost showback?", "expected_doc": "oci-cost-governance"},
+  {"question": "What do OCI alarms publish to?", "expected_doc": "oci-observability"}
+]
