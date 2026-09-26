@@ -51,4 +51,5 @@ jobs:
       - name: tfsec
         uses: aquasecurity/tfsec-action@v1.0.3
         with:
+          version: v1.28.14
           soft_fail: false
